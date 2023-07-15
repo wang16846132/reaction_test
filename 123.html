@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>测试反应力</title>
+  <style>
+    .instruction {
+      font-size: 24px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="instruction">点击开始测试</div>
+  <button onclick="startTest()">开始测试</button>
+
+  <script>
+    var startTime;
+    var endTime;
+    var reactionTime;
+    var clickListener;
+
+    function startTest() {
+      resetProgram();
+      document.body.style.backgroundColor = "red"; // 开始测试时将背景颜色设置为红色
+      document.querySelector(".instruction").style.display = "none"; // 隐藏指示性文字
+
+      // 随机时间后将背景颜色设置为绿色
+      setTimeout(function() {
+        document.body.style.backgroundColor = "green";
+        startTime = new Date().getTime();
+        clickListener = document.addEventListener("click", handleUserClick);
+      }, Math.random() * 3000 + 1000);
+    }
+
+    function handleUserClick() {
+      endTime = new Date().getTime();
+      reactionTime = endTime - startTime;
+      document.body.style.backgroundColor = "white"; // 将背景颜色恢复为白色
+      showResult(reactionTime);
+      stopProgram();
+    }
+
+    function resetProgram() {
+      document.removeEventListener("click", handleUserClick);
+      if (clickListener) {
+        document.removeEventListener("click", clickListener);
+        clickListener = null;
+      }
+      var resultContainer = document.querySelector(".result");
+      if (resultContainer) {
+        resultContainer.remove();
+      }
+    }
+
+    function stopProgram() {
+      resetProgram();
+    }
+
+    function showResult(reactionTime) {
+      var resultContainer = document.createElement("div");
+      resultContainer.classList.add("result");
+      resultContainer.textContent = "您的反应时间为：" + reactionTime + "ms";
+
+      document.body.appendChild(resultContainer);
+    }
+  </script>
+</body>
+</html>
