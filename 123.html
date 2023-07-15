@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>测试反应力</title>
+  <title>測試反應力</title>
   <style>
     .instruction {
       font-size: 24px;
@@ -10,8 +10,8 @@
   </style>
 </head>
 <body>
-  <div class="instruction">点击开始测试</div>
-  <button onclick="startTest()">开始测试</button>
+  <div class="instruction">點擊開始測試</div>
+  <button onclick="startTest()">開始測試</button>
 
   <script>
     var startTime;
@@ -35,7 +35,7 @@
     function handleUserClick() {
       endTime = new Date().getTime();
       reactionTime = endTime - startTime;
-      document.body.style.backgroundColor = "white"; // 将背景颜色恢复为白色
+      document.body.style.backgroundColor = "white"; // 將背景颜色恢復白色
       showResult(reactionTime);
       stopProgram();
     }
@@ -59,7 +59,7 @@
     function showResult(reactionTime) {
       var resultContainer = document.createElement("div");
       resultContainer.classList.add("result");
-      resultContainer.textContent = "您的反应时间为：" + reactionTime + "ms";
+      resultContainer.textContent = "你的反應時間為：" + reactionTime + "ms";
 
       document.body.appendChild(resultContainer);
     }
